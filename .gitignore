@@ -1,0 +1,16 @@
+# CMake build products
+/build/
+/cmake-build-*/
+
+# Local progress and test state
+progress.tsv
+test-progress.tsv
+.infra-roadmap-progress.tsv
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.user
+
