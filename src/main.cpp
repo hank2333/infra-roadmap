@@ -18,7 +18,7 @@
 
 namespace fs = std::filesystem;
 
-struct WeekSpec {
+struct TopicSpec {
     int stage;
     std::string stage_name;
     std::string topic;
@@ -48,51 +48,51 @@ struct DayPlan {
 };
 
 static const std::string kStartDate = "2026-08-05";
+static const std::string kSprintStartDate = "2026-10-07";
 static const std::string kPlanFileName = "roadmap.tsv";
 
-std::vector<WeekSpec> curriculum() {
+std::vector<TopicSpec> legacyCurriculum() {
     return {
         {0, "系统工程底座", "基线、工具链与工程习惯", "建立 CMake/Git/调试器/计时工具工作流", "为小程序加入日志、断言和基准入口", "提交环境清单、基线测试与一页学习地图"},
         {0, "系统工程底座", "进程、线程与系统调用", "梳理 fork/exec/wait、线程和上下文切换", "实现父子进程管道通信并处理错误码", "完成 process-lab，画出进程与线程关系图"},
         {0, "系统工程底座", "虚拟内存、mmap 与 COW", "理解页表、TLB、缺页、mmap 和写时复制", "编写 mmap 文件读写与缺页观察实验", "输出 vm-lab、测量结果和内存路径图"},
         {0, "系统工程底座", "对象生命周期、分配器与内存池", "串联 RAII、移动语义、allocator、arena、对齐和碎片", "实现带移动语义的资源句柄与定长对象池并做对比测试", "提交 memory-lab、生命周期说明与基准表"},
         {0, "系统工程底座", "并发、原子与系统项目整合", "掌握条件变量、线程池、happens-before、memory_order 和伪共享", "实现有界队列与线程池，并用小实验验证原子内存序", "发布 systems-foundation v0.1、压力测试与停机协议"},
-
         {1, "体系结构与性能", "CPU 缓存、数据布局与基准", "理解缓存层级、cache line、预取、AoS/SoA 和可靠计时", "比较顺序/随机访问及 AoS/SoA，并建立可重复 benchmark", "提交 cache-lab、实验数据与基准检查表"},
-        {1, "体系结构与性能", "性能分析、编译器与汇编", "学习吞吐/延迟、O0/O2/O3、内联、别名和热点分析", "使用 profiler 定位热点并对照 C++ 与汇编", "提交 profiling-report 与优化前后证据"},
-        {1, "体系结构与性能", "SIMD、NUMA 与并行伸缩", "理解 SIMD/AVX、自动向量化、NUMA、亲和性和伪共享", "实现标量/SIMD 运算并完成线程伸缩与 padding 实验", "提交 simd-scaling-lab、加速比与瓶颈解释"},
-        {1, "体系结构与性能", "CPU Kernel 阶段项目", "用 roofline、算术强度和内存带宽解释性能", "优化一版 CPU 矩阵运算并逐项测量", "发布 cpu-kernel v0.1 与性能报告"},
+        {1, "体系结构与性能", "性能分析、编译器与汇编", "学习吞吐/延迟、O0/O2/O3、内联、别名和热点分析", "使用 profiler 定位热点并对照 C++ 与汇编", ""}
+    };
+}
 
-        {2, "GPU 与 CUDA", "GPU 执行模型与向量加法", "理解 SM、warp、block、grid、SIMT、kernel launch 和同步", "检查 CUDA 环境并实现带错误检查的 vector add", "提交 device-info、执行模型图和 vector-add 对照测试"},
-        {2, "GPU 与 CUDA", "全局内存与合并访问", "理解 coalescing、带宽、占用率和 pinned memory", "比较连续、跨步和错位访问", "提交 memory-access-lab 与带宽表"},
-        {2, "GPU 与 CUDA", "共享内存与并行归约", "掌握 shared memory、同步和 bank conflict", "实现多版本 reduction 并逐步优化", "完成 reduction、正确性测试和版本对比"},
-        {2, "GPU 与 CUDA", "GEMM：朴素实现到分块优化", "推导 GEMM 索引、FLOPs、tiling、数据复用和 occupancy", "先实现 naive GEMM，再用 shared memory 完成 tiled GEMM", "提交两版 GEMM、误差测试、加速比与瓶颈说明"},
-        {2, "GPU 与 CUDA", "数值稳定 Softmax Kernel", "理解数值稳定 softmax 与 warp/block 级归约", "实现 row-wise softmax 并测试极值输入", "完成 softmax kernel、误差和吞吐报告"},
-        {2, "GPU 与 CUDA", "CUDA 性能分析与优化", "学习 kernel timeline、occupancy、roofline 和内存流量分析", "用 Nsight 或替代工具分析并优化已有 kernels", "提交 profile 证据、三项瓶颈和优化结果"},
-        {2, "GPU 与 CUDA", "转置、访存与 Kernel Fusion", "理解 transpose、bank conflict 和 kernel fusion", "实现 tiled transpose 与一个 add+activation 融合算子", "完成 fusion-lab 与内存流量估算"},
-        {2, "GPU 与 CUDA", "CUDA 算子库阶段项目", "复盘 kernel API、测试、benchmark 和文档标准", "整合 add/matmul/softmax/reduction 为小型库", "发布 cuda-kernels v0.1 和统一 benchmark"},
+std::vector<TopicSpec> sprintCurriculum() {
+    return {
+        {2, "GPU 与 CUDA", "GPU 执行模型与向量加法", "理解 SM、warp、block、grid、SIMT、kernel launch 和同步", "实现带错误检查的 vector add", ""},
+        {2, "GPU 与 CUDA", "全局内存与合并访问", "理解 coalescing、带宽、occupancy 和 pinned memory", "比较连续、跨步和错位访问", ""},
+        {2, "GPU 与 CUDA", "共享内存与归约", "理解 shared memory、同步、bank conflict 和并行归约", "实现一个 shared-memory reduction", ""},
+        {2, "GPU 与 CUDA", "Naive GEMM", "推导 GEMM 索引、FLOPs 和边界处理", "实现 naive GEMM 并与 CPU 结果对照", ""},
+        {2, "GPU 与 CUDA", "Tiled GEMM", "理解 tiling、数据复用和 occupancy", "用 shared memory 实现 tiled GEMM", ""},
+        {2, "GPU 与 CUDA", "Softmax Kernel", "理解数值稳定 softmax 与 block 级归约", "实现 row-wise softmax 并测试极值输入", ""},
+        {2, "GPU 与 CUDA", "性能分析与 Kernel Fusion", "理解 kernel timeline、内存流量和融合收益", "用 Nsight 分析一个 kernel，并实现 add+activation 融合", ""},
 
-        {3, "深度学习框架内部", "Tensor 布局、Storage 与基础算子", "理解 shape、stride、contiguous、view、broadcast、dtype、device 和所有权", "用 C++ 实现 Tensor 元数据及 add/mul/matmul CPU 路径", "提交 tensor-core、布局测试和广播规则"},
-        {3, "深度学习框架内部", "计算图、Backward 与优化器", "理解动态图、拓扑序、梯度累积及基础算子反向传播", "实现 backward、zero_grad 和 SGD，并做数值梯度检查", "训练一个小模型并提交 autograd 测试"},
-        {3, "深度学习框架内部", "Python/C++ 绑定", "理解 pybind11、ABI、GIL 和跨语言数据所有权", "为 Tensor 核心封装 Python API", "实现 import mini_tensor 与基础调用演示"},
-        {3, "深度学习框架内部", "PyTorch C++/CUDA Extension", "理解 ATen dispatch、extension 构建和 contiguous 约束", "把一个 CUDA 算子接入 PyTorch", "提交 extension、正确性测试和 benchmark"},
-        {3, "深度学习框架内部", "Mini Tensor 阶段发布", "复盘 API、autograd、CPU/CUDA 路径和测试", "整理仓库、CI、示例与性能数据", "发布 mini-tensor v0.1 和架构文档"},
+        {3, "深度学习框架内部", "Tensor 布局与 Storage", "理解 shape、stride、contiguous、view、broadcast、dtype 和所有权", "实现 Tensor 元数据、索引和一个广播算子", ""},
+        {3, "深度学习框架内部", "Autograd", "理解动态图、拓扑序、梯度累积和反向传播", "实现 add/mul/ReLU 的 backward 并做数值梯度检查", ""},
+        {3, "深度学习框架内部", "Python/C++ 绑定", "理解 pybind11、ABI、GIL 和数据所有权", "把一个 C++ Tensor 算子暴露给 Python", ""},
+        {3, "深度学习框架内部", "PyTorch C++/CUDA Extension", "理解 ATen dispatch、extension 构建和 contiguous 约束", "把一个 CUDA 算子接入 PyTorch 并校验结果", ""},
 
-        {4, "LLM 推理系统", "Transformer 推理、权重与 Tokenizer", "推导 RMSNorm、RoPE、MLP、Attention，并理解 checkpoint、dtype 和权重布局", "实现单层 forward 并加载小模型配置与权重元数据", "提交 inference-math、model-inspector 与内存估算"},
-        {4, "LLM 推理系统", "Prefill、Decode 与性能指标", "理解 TTFT、TPOT、吞吐和算术强度差异", "测量 Hugging Face 小模型 prefill/decode", "完成 latency-baseline 与实验脚本"},
-        {4, "LLM 推理系统", "KV Cache 与 Attention 推理", "推导 KV cache 形状、容量、生命周期及 MHA/GQA", "实现连续 KV cache 管理器与带缓存的 attention 参考版本", "提交 kv-cache v0.1、显存计算器和正确性测试"},
-        {4, "LLM 推理系统", "Paged KV Cache", "理解分页、block table、碎片与共享前缀", "实现 CPU 模拟的 block allocator", "提交 paged-kv 模拟器与碎片实验"},
-        {4, "LLM 推理系统", "请求队列与调度器", "理解 FCFS、token budget、抢占和公平性", "实现可测试的 request scheduler", "完成 scheduler v0.1 与策略对比"},
-        {4, "LLM 推理系统", "Continuous Batching", "理解动态加入/退出、padding 浪费和迭代级调度", "实现 continuous batching 仿真", "提交吞吐/延迟权衡曲线与解释"},
-        {4, "LLM 推理系统", "Serving 指标、压测与 Backpressure", "理解并发、排队、P50/P95/P99 和 backpressure", "为 mini server 加入指标和负载生成器", "完成 serving benchmark 与瓶颈报告"},
-        {4, "LLM 推理系统", "量化与推理优化", "理解 FP16/BF16/INT8/INT4、权重与 KV 量化", "对小模型做一种量化并比较质量、速度和内存", "提交 quantization-report 与选择依据"},
-        {4, "LLM 推理系统", "Mini LLM Server 发布", "复盘 engine、KV cache、scheduler、batching 和 API", "整合 HTTP/CLI 请求到推理引擎并压测", "发布 mini-llm-server v0.1 与架构/性能文档"},
+        {4, "LLM 推理系统", "Transformer 推理结构", "理解 RMSNorm、RoPE、Attention、MLP、权重布局和 tokenizer", "用小张量实现单层 forward", ""},
+        {4, "LLM 推理系统", "Prefill、Decode 与指标", "理解 prefill/decode、TTFT、TPOT、吞吐和算术强度", "测量一个小模型的 prefill/decode 延迟", ""},
+        {4, "LLM 推理系统", "KV Cache 与 Attention", "理解 KV cache 形状、容量、生命周期及 MHA/GQA", "实现连续 KV cache 和带缓存的 attention", ""},
+        {4, "LLM 推理系统", "Paged KV Cache", "理解分页、block table、碎片与共享前缀", "实现 CPU 版 block allocator", ""},
+        {4, "LLM 推理系统", "请求调度器", "理解 FCFS、token budget、抢占和公平性", "实现最小 request scheduler", ""},
+        {4, "LLM 推理系统", "Continuous Batching", "理解动态加入/退出和迭代级调度", "实现 continuous batching 仿真", ""},
+        {4, "LLM 推理系统", "Serving 与 Backpressure", "理解并发、排队、P50/P95/P99 和 backpressure", "为最小服务加入并发限制与延迟统计", ""},
+        {4, "LLM 推理系统", "量化", "理解 FP16/BF16/INT8/INT4 的质量、速度和内存权衡", "对小模型做一种量化并记录内存差异", ""},
+        {4, "LLM 推理系统", "Mini LLM Server", "理解 engine、KV cache、scheduler、batching 和 API 的协作", "串起请求队列、调度器与一个可调用的推理入口", ""},
 
-        {5, "分布式与生产化", "Collective 与并行策略", "理解 broadcast、reduce、all-reduce、ring、DP、TP、PP 和 ZeRO", "用多进程模拟 collective，并为给定模型设计 GPU 切分方案", "提交 collective-lab 与显存/通信量推导"},
-        {5, "分布式与生产化", "Docker、Kubernetes 与 GPU 部署", "掌握镜像、容器、Pod、Deployment、Service 和 GPU 调度", "容器化 mini server 并编写可校验的部署清单", "提交镜像、健康检查、k8s manifests 与运行说明"},
-        {5, "分布式与生产化", "vLLM 源码定向阅读", "跟踪 request 到 scheduler、KV cache、worker 的调用链", "为关键类画调用图并运行一个最小调试案例", "产出 vLLM reading notes 与三个改进问题"},
-        {5, "分布式与生产化", "TensorRT-LLM、DeepSpeed 与框架选型", "比较图优化、kernel fusion、ZeRO 和并行策略", "复现一个最小例或完成关键源码路径追踪", "完成框架对比表与选型说明"},
-        {5, "分布式与生产化", "作品集、面试与投递冲刺", "整理系统/CUDA/LLM 常见题与项目证据", "打磨两个主项目、做模拟面试并建立投递表", "发布作品集终版并启动分批投递"}
+        {5, "分布式与生产化", "Collective 与并行策略", "理解 all-reduce、ring、DP、TP、PP 和 ZeRO", "用多进程模拟 ring all-reduce", ""},
+        {5, "分布式与生产化", "Docker 与 GPU 容器", "理解镜像层、volume、network 和 GPU runtime", "为 mini server 编写并运行 Dockerfile", ""},
+        {5, "分布式与生产化", "Kubernetes 与 GPU 调度", "理解 Pod、Deployment、Service、资源限制和 GPU 调度", "编写并校验最小部署清单", ""},
+        {5, "分布式与生产化", "vLLM 源码路径", "跟踪 request、scheduler、KV cache 和 worker 的调用链", "本地跑通 vLLM 最小例并定位四个关键类", ""},
+        {5, "分布式与生产化", "开源贡献上手", "理解 issue、复现、测试、最小修复和 PR 流程", "选择一个仓库，复现一个 good first issue 并跑通测试", ""}
     };
 }
 
@@ -212,7 +212,7 @@ fs::path progressPath() {
     return fs::current_path() / ".infra-roadmap-progress.tsv";
 }
 
-std::pair<std::string, std::string> dailyTasks(const WeekSpec& spec, int day) {
+std::pair<std::string, std::string> dailyTasks(const TopicSpec& spec, int day) {
     switch (day) {
         case 0:
             return {"阅读/推导：" + spec.learn + "；写 5 条要点和 2 个疑问（40 分钟）",
@@ -239,25 +239,39 @@ std::pair<std::string, std::string> dailyTasks(const WeekSpec& spec, int day) {
 }
 
 void generatePlan(const fs::path& path) {
-    const auto specs = curriculum();
+    const auto legacy = legacyCurriculum();
+    const auto sprint = sprintCurriculum();
     fs::create_directories(path.parent_path());
     std::ofstream out(path, std::ios::binary | std::ios::trunc);
     if (!out) {
         throw std::runtime_error("无法写入路线文件: " + path.string());
     }
     out << "date\tstage\tstage_name\tweek\ttopic\ttask_no\tminutes\ttask\n";
-    for (std::size_t week = 0; week < specs.size(); ++week) {
-        for (int day = 0; day < 7; ++day) {
-            const std::string date = addDays(kStartDate, static_cast<int>(week) * 7 + day);
-            const auto tasks = dailyTasks(specs[week], day);
+    for (int index = 0; index < 44; ++index) {
+            const int week = index / 7;
+            const int day = index % 7;
+            const auto& spec = legacy.at(week);
+            const std::string date = addDays(kStartDate, index);
+            const auto tasks = dailyTasks(spec, day);
             const int first_minutes = (day == 2 ? 55 : day == 4 ? 45 : day == 5 ? 50 : day == 6 ? 35 : day == 0 ? 40 : 35);
             const int second_minutes = (day == 2 ? 30 : day == 4 ? 40 : day == 5 ? 35 : day == 6 ? 25 : day == 0 ? 35 : 40);
-            out << date << '\t' << specs[week].stage << '\t' << cleanField(specs[week].stage_name)
-                << '\t' << (week + 1) << '\t' << cleanField(specs[week].topic)
+            out << date << '\t' << spec.stage << '\t' << cleanField(spec.stage_name)
+                << '\t' << (week + 1) << '\t' << cleanField(spec.topic)
                 << "\t1\t" << first_minutes << '\t' << cleanField(tasks.first) << '\n';
-            out << date << '\t' << specs[week].stage << '\t' << cleanField(specs[week].stage_name)
-                << '\t' << (week + 1) << '\t' << cleanField(specs[week].topic)
+            out << date << '\t' << spec.stage << '\t' << cleanField(spec.stage_name)
+                << '\t' << (week + 1) << '\t' << cleanField(spec.topic)
                 << "\t2\t" << second_minutes << '\t' << cleanField(tasks.second) << '\n';
+    }
+    for (std::size_t topic = 0; topic < sprint.size(); ++topic) {
+        for (int part = 0; part < 2; ++part) {
+            const int index = static_cast<int>(topic) * 2 + part;
+            const auto& spec = sprint[topic];
+            const std::string text = part == 0
+                ? "知识点：" + spec.learn + "；整理一页要点（75 分钟）"
+                : "基础 Lab（当天完成）：" + spec.practice + "（75 分钟）";
+            out << addDays(kSprintStartDate, index) << '\t' << spec.stage << '\t'
+                << cleanField(spec.stage_name) << '\t' << (8 + index / 7) << '\t'
+                << cleanField(spec.topic) << "\t1\t75\t" << cleanField(text) << '\n';
         }
     }
 }
@@ -399,9 +413,9 @@ const DayPlan& requireDay(const std::map<std::string, DayPlan>& days, const std:
 void showWeek(const std::map<std::string, DayPlan>& days, const std::string& date,
               const std::vector<Task>& all_tasks, const std::set<std::string>& completed) {
     const auto& selected = requireDay(days, date);
-    const std::string week_start = addDays(kStartDate, (selected.week - 1) * 7);
-    for (int i = 0; i < 7; ++i) {
-        printDay(requireDay(days, addDays(week_start, i)), all_tasks, completed);
+    for (const auto& [day_date, day] : days) {
+        (void)day_date;
+        if (day.week == selected.week) printDay(day, all_tasks, completed);
     }
 }
 
@@ -426,22 +440,22 @@ void printStageSummary(const std::vector<Task>& tasks, const std::set<std::strin
 
 void printStage(const std::vector<Task>& tasks, int target,
                 const std::set<std::string>& completed) {
-    std::map<int, std::pair<std::string, std::string>> weeks;
+    std::map<std::pair<int, std::string>, std::string> topics;
     int total = 0;
     int done = 0;
     std::string name;
     for (const auto& task : tasks) {
         if (task.stage != target) continue;
         name = task.stage_name;
-        weeks[task.week] = {task.date, task.topic};
+        topics.emplace(std::make_pair(task.week, task.topic), task.date);
         total++;
         if (completed.count(taskKey(task.date, task.number))) done++;
     }
     if (total == 0) throw std::runtime_error("阶段编号应为 0-5");
     std::cout << "\nStage " << target << "  " << name << "  " << done << "/" << total
               << " (" << (100 * done / total) << "%)\n";
-    for (const auto& [week, value] : weeks) {
-        std::cout << "  第 " << week << " 周  " << value.first << "  " << value.second << "\n";
+    for (const auto& [key, start_date] : topics) {
+        std::cout << "  第 " << key.first << " 周  " << start_date << "  " << key.second << "\n";
     }
 }
 
