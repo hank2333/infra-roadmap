@@ -87,53 +87,57 @@ date	stage	stage_name	week	topic	task_no	minutes	task
 2026-09-16	1	体系结构与性能	7	性能分析、编译器与汇编	2	35	准备本周仓库/实验入口，记录可复现的初始状态（35 分钟）
 2026-09-17	1	体系结构与性能	7	性能分析、编译器与汇编	1	35	用自己的话复述核心机制，并画一张数据流或调用关系图（35 分钟）
 2026-09-17	1	体系结构与性能	7	性能分析、编译器与汇编	2	40	最小实验：使用 profiler 定位热点并对照 C++ 与汇编；先跑通正确版本（40 分钟）
-2026-10-07	2	GPU 与 CUDA	8	GPU 执行模型与向量加法	1	75	知识点：理解 SM、warp、block、grid、SIMT、kernel launch 和同步；整理一页要点（75 分钟）
-2026-10-08	2	GPU 与 CUDA	8	GPU 执行模型与向量加法	1	75	基础 Lab（当天完成）：实现带错误检查的 vector add（75 分钟）
-2026-10-09	2	GPU 与 CUDA	8	全局内存与合并访问	1	75	知识点：理解 coalescing、带宽、occupancy 和 pinned memory；整理一页要点（75 分钟）
-2026-10-10	2	GPU 与 CUDA	8	全局内存与合并访问	1	75	基础 Lab（当天完成）：比较连续、跨步和错位访问（75 分钟）
-2026-10-11	2	GPU 与 CUDA	8	共享内存与归约	1	75	知识点：理解 shared memory、同步、bank conflict 和并行归约；整理一页要点（75 分钟）
-2026-10-12	2	GPU 与 CUDA	8	共享内存与归约	1	75	基础 Lab（当天完成）：实现一个 shared-memory reduction（75 分钟）
-2026-10-13	2	GPU 与 CUDA	8	Naive GEMM	1	75	知识点：推导 GEMM 索引、FLOPs 和边界处理；整理一页要点（75 分钟）
-2026-10-14	2	GPU 与 CUDA	9	Naive GEMM	1	75	基础 Lab（当天完成）：实现 naive GEMM 并与 CPU 结果对照（75 分钟）
-2026-10-15	2	GPU 与 CUDA	9	Tiled GEMM	1	75	知识点：理解 tiling、数据复用和 occupancy；整理一页要点（75 分钟）
-2026-10-16	2	GPU 与 CUDA	9	Tiled GEMM	1	75	基础 Lab（当天完成）：用 shared memory 实现 tiled GEMM（75 分钟）
-2026-10-17	2	GPU 与 CUDA	9	Softmax Kernel	1	75	知识点：理解数值稳定 softmax 与 block 级归约；整理一页要点（75 分钟）
-2026-10-18	2	GPU 与 CUDA	9	Softmax Kernel	1	75	基础 Lab（当天完成）：实现 row-wise softmax 并测试极值输入（75 分钟）
-2026-10-19	2	GPU 与 CUDA	9	性能分析与 Kernel Fusion	1	75	知识点：理解 kernel timeline、内存流量和融合收益；整理一页要点（75 分钟）
-2026-10-20	2	GPU 与 CUDA	9	性能分析与 Kernel Fusion	1	75	基础 Lab（当天完成）：用 Nsight 分析一个 kernel，并实现 add+activation 融合（75 分钟）
-2026-10-21	3	深度学习框架内部	10	Tensor 布局与 Storage	1	75	知识点：理解 shape、stride、contiguous、view、broadcast、dtype 和所有权；整理一页要点（75 分钟）
-2026-10-22	3	深度学习框架内部	10	Tensor 布局与 Storage	1	75	基础 Lab（当天完成）：实现 Tensor 元数据、索引和一个广播算子（75 分钟）
-2026-10-23	3	深度学习框架内部	10	Autograd	1	75	知识点：理解动态图、拓扑序、梯度累积和反向传播；整理一页要点（75 分钟）
-2026-10-24	3	深度学习框架内部	10	Autograd	1	75	基础 Lab（当天完成）：实现 add/mul/ReLU 的 backward 并做数值梯度检查（75 分钟）
-2026-10-25	3	深度学习框架内部	10	Python/C++ 绑定	1	75	知识点：理解 pybind11、ABI、GIL 和数据所有权；整理一页要点（75 分钟）
-2026-10-26	3	深度学习框架内部	10	Python/C++ 绑定	1	75	基础 Lab（当天完成）：把一个 C++ Tensor 算子暴露给 Python（75 分钟）
-2026-10-27	3	深度学习框架内部	10	PyTorch C++/CUDA Extension	1	75	知识点：理解 ATen dispatch、extension 构建和 contiguous 约束；整理一页要点（75 分钟）
-2026-10-28	3	深度学习框架内部	11	PyTorch C++/CUDA Extension	1	75	基础 Lab（当天完成）：把一个 CUDA 算子接入 PyTorch 并校验结果（75 分钟）
-2026-10-29	4	LLM 推理系统	11	Transformer 推理结构	1	75	知识点：理解 RMSNorm、RoPE、Attention、MLP、权重布局和 tokenizer；整理一页要点（75 分钟）
-2026-10-30	4	LLM 推理系统	11	Transformer 推理结构	1	75	基础 Lab（当天完成）：用小张量实现单层 forward（75 分钟）
-2026-10-31	4	LLM 推理系统	11	Prefill、Decode 与指标	1	75	知识点：理解 prefill/decode、TTFT、TPOT、吞吐和算术强度；整理一页要点（75 分钟）
-2026-11-01	4	LLM 推理系统	11	Prefill、Decode 与指标	1	75	基础 Lab（当天完成）：测量一个小模型的 prefill/decode 延迟（75 分钟）
-2026-11-02	4	LLM 推理系统	11	KV Cache 与 Attention	1	75	知识点：理解 KV cache 形状、容量、生命周期及 MHA/GQA；整理一页要点（75 分钟）
-2026-11-03	4	LLM 推理系统	11	KV Cache 与 Attention	1	75	基础 Lab（当天完成）：实现连续 KV cache 和带缓存的 attention（75 分钟）
-2026-11-04	4	LLM 推理系统	12	Paged KV Cache	1	75	知识点：理解分页、block table、碎片与共享前缀；整理一页要点（75 分钟）
-2026-11-05	4	LLM 推理系统	12	Paged KV Cache	1	75	基础 Lab（当天完成）：实现 CPU 版 block allocator（75 分钟）
-2026-11-06	4	LLM 推理系统	12	请求调度器	1	75	知识点：理解 FCFS、token budget、抢占和公平性；整理一页要点（75 分钟）
-2026-11-07	4	LLM 推理系统	12	请求调度器	1	75	基础 Lab（当天完成）：实现最小 request scheduler（75 分钟）
-2026-11-08	4	LLM 推理系统	12	Continuous Batching	1	75	知识点：理解动态加入/退出和迭代级调度；整理一页要点（75 分钟）
-2026-11-09	4	LLM 推理系统	12	Continuous Batching	1	75	基础 Lab（当天完成）：实现 continuous batching 仿真（75 分钟）
-2026-11-10	4	LLM 推理系统	12	Serving 与 Backpressure	1	75	知识点：理解并发、排队、P50/P95/P99 和 backpressure；整理一页要点（75 分钟）
-2026-11-11	4	LLM 推理系统	13	Serving 与 Backpressure	1	75	基础 Lab（当天完成）：为最小服务加入并发限制与延迟统计（75 分钟）
-2026-11-12	4	LLM 推理系统	13	量化	1	75	知识点：理解 FP16/BF16/INT8/INT4 的质量、速度和内存权衡；整理一页要点（75 分钟）
-2026-11-13	4	LLM 推理系统	13	量化	1	75	基础 Lab（当天完成）：对小模型做一种量化并记录内存差异（75 分钟）
-2026-11-14	4	LLM 推理系统	13	Mini LLM Server	1	75	知识点：理解 engine、KV cache、scheduler、batching 和 API 的协作；整理一页要点（75 分钟）
-2026-11-15	4	LLM 推理系统	13	Mini LLM Server	1	75	基础 Lab（当天完成）：串起请求队列、调度器与一个可调用的推理入口（75 分钟）
-2026-11-16	5	分布式与生产化	13	Collective 与并行策略	1	75	知识点：理解 all-reduce、ring、DP、TP、PP 和 ZeRO；整理一页要点（75 分钟）
-2026-11-17	5	分布式与生产化	13	Collective 与并行策略	1	75	基础 Lab（当天完成）：用多进程模拟 ring all-reduce（75 分钟）
-2026-11-18	5	分布式与生产化	14	Docker 与 GPU 容器	1	75	知识点：理解镜像层、volume、network 和 GPU runtime；整理一页要点（75 分钟）
-2026-11-19	5	分布式与生产化	14	Docker 与 GPU 容器	1	75	基础 Lab（当天完成）：为 mini server 编写并运行 Dockerfile（75 分钟）
-2026-11-20	5	分布式与生产化	14	Kubernetes 与 GPU 调度	1	75	知识点：理解 Pod、Deployment、Service、资源限制和 GPU 调度；整理一页要点（75 分钟）
-2026-11-21	5	分布式与生产化	14	Kubernetes 与 GPU 调度	1	75	基础 Lab（当天完成）：编写并校验最小部署清单（75 分钟）
-2026-11-22	5	分布式与生产化	14	vLLM 源码路径	1	75	知识点：跟踪 request、scheduler、KV cache 和 worker 的调用链；整理一页要点（75 分钟）
-2026-11-23	5	分布式与生产化	14	vLLM 源码路径	1	75	基础 Lab（当天完成）：本地跑通 vLLM 最小例并定位四个关键类（75 分钟）
-2026-11-24	5	分布式与生产化	14	开源贡献上手	1	75	知识点：理解 issue、复现、测试、最小修复和 PR 流程；整理一页要点（75 分钟）
-2026-11-25	5	分布式与生产化	15	开源贡献上手	1	75	基础 Lab（当天完成）：选择一个仓库，复现一个 good first issue 并跑通测试（75 分钟）
+2026-10-07	1	体系结构与性能	8	SIMD、AVX 与自动向量化	1	75	知识点：理解 SIMD/AVX、数据对齐和编译器自动向量化；整理一页要点（75 分钟）
+2026-10-08	1	体系结构与性能	8	SIMD、AVX 与自动向量化	1	75	基础 Lab（当天完成）：实现标量与 SIMD 向量运算并比较结果和耗时（75 分钟）
+2026-10-09	1	体系结构与性能	8	NUMA、亲和性与 Roofline	1	75	知识点：理解 NUMA、线程亲和性、伪共享、Roofline、算术强度和内存带宽；整理一页要点（75 分钟）
+2026-10-10	1	体系结构与性能	8	NUMA、亲和性与 Roofline	1	75	基础 Lab（当天完成）：完成线程亲和性与 cache-line padding 实验，并分析一个 CPU 矩阵乘瓶颈（75 分钟）
+2026-10-11	2	GPU 与 CUDA	8	GPU 执行模型与向量加法	1	75	知识点：理解 SM、warp、block、grid、SIMT、kernel launch 和同步；整理一页要点（75 分钟）
+2026-10-12	2	GPU 与 CUDA	8	GPU 执行模型与向量加法	1	75	基础 Lab（当天完成）：实现带错误检查的 vector add（75 分钟）
+2026-10-13	2	GPU 与 CUDA	8	全局内存与合并访问	1	75	知识点：理解 coalescing、带宽、occupancy 和 pinned memory；整理一页要点（75 分钟）
+2026-10-14	2	GPU 与 CUDA	9	全局内存与合并访问	1	75	基础 Lab（当天完成）：比较连续、跨步和错位访问（75 分钟）
+2026-10-15	2	GPU 与 CUDA	9	共享内存与归约	1	75	知识点：理解 shared memory、同步、bank conflict 和并行归约；整理一页要点（75 分钟）
+2026-10-16	2	GPU 与 CUDA	9	共享内存与归约	1	75	基础 Lab（当天完成）：实现一个 shared-memory reduction（75 分钟）
+2026-10-17	2	GPU 与 CUDA	9	Naive GEMM	1	75	知识点：推导 GEMM 索引、FLOPs 和边界处理；整理一页要点（75 分钟）
+2026-10-18	2	GPU 与 CUDA	9	Naive GEMM	1	75	基础 Lab（当天完成）：实现 naive GEMM 并与 CPU 结果对照（75 分钟）
+2026-10-19	2	GPU 与 CUDA	9	Tiled GEMM	1	75	知识点：理解 tiling、数据复用和 occupancy；整理一页要点（75 分钟）
+2026-10-20	2	GPU 与 CUDA	9	Tiled GEMM	1	75	基础 Lab（当天完成）：用 shared memory 实现 tiled GEMM（75 分钟）
+2026-10-21	2	GPU 与 CUDA	10	Softmax Kernel	1	75	知识点：理解数值稳定 softmax 与 block 级归约；整理一页要点（75 分钟）
+2026-10-22	2	GPU 与 CUDA	10	Softmax Kernel	1	75	基础 Lab（当天完成）：实现 row-wise softmax 并测试极值输入（75 分钟）
+2026-10-23	2	GPU 与 CUDA	10	性能分析与 Kernel Fusion	1	75	知识点：理解 kernel timeline、内存流量和融合收益；整理一页要点（75 分钟）
+2026-10-24	2	GPU 与 CUDA	10	性能分析与 Kernel Fusion	1	75	基础 Lab（当天完成）：用 Nsight 分析一个 kernel，并实现 add+activation 融合（75 分钟）
+2026-10-25	3	深度学习框架内部	10	Tensor 布局与 Storage	1	75	知识点：理解 shape、stride、contiguous、view、broadcast、dtype 和所有权；整理一页要点（75 分钟）
+2026-10-26	3	深度学习框架内部	10	Tensor 布局与 Storage	1	75	基础 Lab（当天完成）：实现 Tensor 元数据、索引和一个广播算子（75 分钟）
+2026-10-27	3	深度学习框架内部	10	Autograd	1	75	知识点：理解动态图、拓扑序、梯度累积和反向传播；整理一页要点（75 分钟）
+2026-10-28	3	深度学习框架内部	11	Autograd	1	75	基础 Lab（当天完成）：实现 add/mul/ReLU 的 backward 并做数值梯度检查（75 分钟）
+2026-10-29	3	深度学习框架内部	11	Python/C++ 绑定	1	75	知识点：理解 pybind11、ABI、GIL 和数据所有权；整理一页要点（75 分钟）
+2026-10-30	3	深度学习框架内部	11	Python/C++ 绑定	1	75	基础 Lab（当天完成）：把一个 C++ Tensor 算子暴露给 Python（75 分钟）
+2026-10-31	3	深度学习框架内部	11	PyTorch C++/CUDA Extension	1	75	知识点：理解 ATen dispatch、extension 构建和 contiguous 约束；整理一页要点（75 分钟）
+2026-11-01	3	深度学习框架内部	11	PyTorch C++/CUDA Extension	1	75	基础 Lab（当天完成）：把一个 CUDA 算子接入 PyTorch 并校验结果（75 分钟）
+2026-11-02	4	LLM 推理系统	11	Transformer 推理结构	1	75	知识点：理解 RMSNorm、RoPE、Attention、MLP、权重布局和 tokenizer；整理一页要点（75 分钟）
+2026-11-03	4	LLM 推理系统	11	Transformer 推理结构	1	75	基础 Lab（当天完成）：用小张量实现单层 forward（75 分钟）
+2026-11-04	4	LLM 推理系统	12	Prefill、Decode 与指标	1	75	知识点：理解 prefill/decode、TTFT、TPOT、吞吐和算术强度；整理一页要点（75 分钟）
+2026-11-05	4	LLM 推理系统	12	Prefill、Decode 与指标	1	75	基础 Lab（当天完成）：测量一个小模型的 prefill/decode 延迟（75 分钟）
+2026-11-06	4	LLM 推理系统	12	KV Cache 与 Attention	1	75	知识点：理解 KV cache 形状、容量、生命周期及 MHA/GQA；整理一页要点（75 分钟）
+2026-11-07	4	LLM 推理系统	12	KV Cache 与 Attention	1	75	基础 Lab（当天完成）：实现连续 KV cache 和带缓存的 attention（75 分钟）
+2026-11-08	4	LLM 推理系统	12	Paged KV Cache	1	75	知识点：理解分页、block table、碎片与共享前缀；整理一页要点（75 分钟）
+2026-11-09	4	LLM 推理系统	12	Paged KV Cache	1	75	基础 Lab（当天完成）：实现 CPU 版 block allocator（75 分钟）
+2026-11-10	4	LLM 推理系统	12	请求调度器	1	75	知识点：理解 FCFS、token budget、抢占和公平性；整理一页要点（75 分钟）
+2026-11-11	4	LLM 推理系统	13	请求调度器	1	75	基础 Lab（当天完成）：实现最小 request scheduler（75 分钟）
+2026-11-12	4	LLM 推理系统	13	Continuous Batching	1	75	知识点：理解动态加入/退出和迭代级调度；整理一页要点（75 分钟）
+2026-11-13	4	LLM 推理系统	13	Continuous Batching	1	75	基础 Lab（当天完成）：实现 continuous batching 仿真（75 分钟）
+2026-11-14	4	LLM 推理系统	13	Serving 与 Backpressure	1	75	知识点：理解并发、排队、P50/P95/P99 和 backpressure；整理一页要点（75 分钟）
+2026-11-15	4	LLM 推理系统	13	Serving 与 Backpressure	1	75	基础 Lab（当天完成）：为最小服务加入并发限制与延迟统计（75 分钟）
+2026-11-16	4	LLM 推理系统	13	量化	1	75	知识点：理解 FP16/BF16/INT8/INT4 的质量、速度和内存权衡；整理一页要点（75 分钟）
+2026-11-17	4	LLM 推理系统	13	量化	1	75	基础 Lab（当天完成）：对小模型做一种量化并记录内存差异（75 分钟）
+2026-11-18	4	LLM 推理系统	14	Mini LLM Server	1	75	知识点：理解 engine、KV cache、scheduler、batching 和 API 的协作；整理一页要点（75 分钟）
+2026-11-19	4	LLM 推理系统	14	Mini LLM Server	1	75	基础 Lab（当天完成）：串起请求队列、调度器与一个可调用的推理入口（75 分钟）
+2026-11-20	5	分布式与生产化	14	Collective 与并行策略	1	75	知识点：理解 all-reduce、ring、DP、TP、PP 和 ZeRO；整理一页要点（75 分钟）
+2026-11-21	5	分布式与生产化	14	Collective 与并行策略	1	75	基础 Lab（当天完成）：用多进程模拟 ring all-reduce（75 分钟）
+2026-11-22	5	分布式与生产化	14	Docker 与 GPU 容器	1	75	知识点：理解镜像层、volume、network 和 GPU runtime；整理一页要点（75 分钟）
+2026-11-23	5	分布式与生产化	14	Docker 与 GPU 容器	1	75	基础 Lab（当天完成）：为 mini server 编写并运行 Dockerfile（75 分钟）
+2026-11-24	5	分布式与生产化	14	Kubernetes 与 GPU 调度	1	75	知识点：理解 Pod、Deployment、Service、资源限制和 GPU 调度；整理一页要点（75 分钟）
+2026-11-25	5	分布式与生产化	15	Kubernetes 与 GPU 调度	1	75	基础 Lab（当天完成）：编写并校验最小部署清单（75 分钟）
+2026-11-26	5	分布式与生产化	15	vLLM 源码路径	1	75	知识点：跟踪 request、scheduler、KV cache 和 worker 的调用链；整理一页要点（75 分钟）
+2026-11-27	5	分布式与生产化	15	vLLM 源码路径	1	75	基础 Lab（当天完成）：本地跑通 vLLM 最小例并定位四个关键类（75 分钟）
+2026-11-28	5	分布式与生产化	15	开源贡献上手	1	75	知识点：理解 issue、复现、测试、最小修复和 PR 流程；整理一页要点（75 分钟）
+2026-11-29	5	分布式与生产化	15	开源贡献上手	1	75	基础 Lab（当天完成）：选择一个仓库，复现一个 good first issue 并跑通测试（75 分钟）

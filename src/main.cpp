@@ -65,6 +65,8 @@ std::vector<TopicSpec> legacyCurriculum() {
 
 std::vector<TopicSpec> sprintCurriculum() {
     return {
+        {1, "体系结构与性能", "SIMD、AVX 与自动向量化", "理解 SIMD/AVX、数据对齐和编译器自动向量化", "实现标量与 SIMD 向量运算并比较结果和耗时", ""},
+        {1, "体系结构与性能", "NUMA、亲和性与 Roofline", "理解 NUMA、线程亲和性、伪共享、Roofline、算术强度和内存带宽", "完成线程亲和性与 cache-line padding 实验，并分析一个 CPU 矩阵乘瓶颈", ""},
         {2, "GPU 与 CUDA", "GPU 执行模型与向量加法", "理解 SM、warp、block、grid、SIMT、kernel launch 和同步", "实现带错误检查的 vector add", ""},
         {2, "GPU 与 CUDA", "全局内存与合并访问", "理解 coalescing、带宽、occupancy 和 pinned memory", "比较连续、跨步和错位访问", ""},
         {2, "GPU 与 CUDA", "共享内存与归约", "理解 shared memory、同步、bank conflict 和并行归约", "实现一个 shared-memory reduction", ""},
